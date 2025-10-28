@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Will You Be Mine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            width: 100vw;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 14px 28px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 130px;
+            border-radius: 8px;
+            position: absolute;
+        }
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+        }
+        #no {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hi, Will you be mine? ❤️</h1>
+    <div class="buttons">
+        <button id="yes" onclick="yesClicked()">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <script>
+        let angle = 0;
+        function yesClicked() {
+            document.body.innerHTML = '<h1>Yay! 🥰 I knew you would say yes! 💖</h1><h2>Sorry baby 🥺</h2><h2> I Love you ❤️</h2>';
+        }
+        function moveNoButton() {
+            let noButton = document.getElementById("no");
+            let container = document.querySelector(".buttons");
+            let radius = Math.min(window.innerWidth, window.innerHeight) / 5; 
+            let centerX = container.clientWidth / 2;
+            let centerY = container.clientHeight / 2;
+            angle += 30; // Rotate step
+            let x = centerX + radius * Math.cos(angle * Math.PI / 180) - noButton.clientWidth / 2;
+            let y = centerY + radius * Math.sin(angle * Math.PI / 180) - noButton.clientHeight / 2;
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        document.getElementById("no").addEventListener("mouseover", moveNoButton);
+        document.getElementById("no").addEventListener("touchstart", moveNoButton);
+    </script>
+</body>
+</html>
